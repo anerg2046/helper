@@ -97,7 +97,7 @@ class Http {
             curl_close($ch);
             exception("获取头像出错，$errorMsg", $errorCode);
         }
-        $content_type = explode($file_info['content_type'], '/');
+        $content_type = explode('/', $file_info['content_type']);
         if (strtolower($content_type[0]) != 'image') {
             exception('下载地址文件不是图片');
         }
