@@ -23,6 +23,9 @@ Http::postRaw($url, $raw)
 // $option数组必须包含cert_path,key_path,ca_path三个证书地址
 Http::postRawSsl($url, $raw, $options)
 
+//下载图片到指定位置
+Http::saveImage($url, $path, $filename = null)
+
 ```
 
 ## Xml
