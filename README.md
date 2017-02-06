@@ -51,3 +51,12 @@ Encrypt::encrypt($data, $expire = 0, $key = '')
 Encrypt::decrypt($data, $key = '')
 
 ```
+
+## Time
+> 时间相关操作
+
+```
+// 输出优化后的时间显示格式
+Time::optimization($time)
+
+```
