@@ -20,8 +20,8 @@ Http::post($url, $data = null, $params = null)
 Http::postRaw($url, $raw, $params = null)
 
 // 带ssl证书请求原始数据
-// $option数组必须包含cert_path,key_path,ca_path三个证书地址
-Http::postRawSsl($url, $raw, $oarams)
+// $params数组必须包含cert_path,key_path,ca_path三个证书地址
+Http::postRawSsl($url, $raw, $params)
 
 //下载图片到指定位置
 Http::saveImage($url, $path, $filename = null, $params = null)

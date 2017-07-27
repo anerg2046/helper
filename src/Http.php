@@ -12,7 +12,8 @@ class Http {
     private static function init($params = null) {
         if (function_exists('curl_init')) {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, array_key_exists('header', $params) ? $params['header'] : false);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array_key_exists('header', $params) ? $params['header'] : false);
             curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
