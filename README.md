@@ -8,23 +8,23 @@
 
 ```
 // 发起请求,get/post
-Http::request($url, $data = null, $method = 'get')
+Http::request($url, $data = null, $method = 'get', $params = null)
 
 // get方式请求
-Http::get($url, $data = null)
+Http::get($url, $data = null, $params = null)
 
 // post方式请求
-Http::post($url, $data = null)
+Http::post($url, $data = null, $params = null)
 
 // post方式发送原始数据
-Http::postRaw($url, $raw)
+Http::postRaw($url, $raw, $params = null)
 
 // 带ssl证书请求原始数据
 // $option数组必须包含cert_path,key_path,ca_path三个证书地址
-Http::postRawSsl($url, $raw, $options)
+Http::postRawSsl($url, $raw, $oarams)
 
 //下载图片到指定位置
-Http::saveImage($url, $path, $filename = null)
+Http::saveImage($url, $path, $filename = null, $params = null)
 
 ```
 
