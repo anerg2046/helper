@@ -9,11 +9,11 @@ namespace anerg\helper;
 
 class Http {
 
-    private static function init($params = null) {
+    private static function init($params = []) {
         if (function_exists('curl_init')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array_key_exists('header', $params) ? $params['header'] : false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array_key_exists('header', $params) ? $params['header'] : []);
             curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -53,7 +53,7 @@ class Http {
         return self::exec($ch);
     }
 
-    public static function post($url, $data = null, $params = null) {
+    public static function post($url, $data = null, $params = []) {
         $ch = self::init($params);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -63,7 +63,7 @@ class Http {
         return self::exec($ch);
     }
 
-    public static function postRaw($url, $raw, $params = null) {
+    public static function postRaw($url, $raw, $params = []) {
         $ch = self::init($params);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -71,7 +71,7 @@ class Http {
         return self::exec($ch);
     }
 
-    public static function postRawSsl($url, $raw, $params = null) {
+    public static function postRawSsl($url, $raw, $params = []) {
         $ch = self::init($params);
         if (!array_key_exists('cert_path', $params) || !array_key_exists('key_path', $params) || !array_key_exists('ca_path', $params)) {
             exception('证书文件路径不能为空');
@@ -85,7 +85,7 @@ class Http {
         return self::exec($ch);
     }
 
-    public static function saveImage($url, $path, $filename = null, $params = null) {
+    public static function saveImage($url, $path, $filename = null, $params = []) {
         $ch  = self::init($params);
         curl_setopt($ch, CURLOPT_URL, $url);
         $img = curl_exec($ch);
