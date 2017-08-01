@@ -9,7 +9,7 @@ namespace anerg\helper;
 
 class Http {
 
-    private static function init($params = null) {
+    private static function init($params = []) {
         if (function_exists('curl_init')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, false);
