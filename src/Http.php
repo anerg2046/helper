@@ -13,13 +13,9 @@ class Http {
         if (function_exists('curl_init')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
             if ($params !== null) {
-                if (array_key_exists('header', $params)) {
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $params['header']);
-                }
-                curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
-            } else {
-                curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+                self::setParams($ch, $params);
             }
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -29,6 +25,13 @@ class Http {
         } else {
             exception('服务器不支持CURL');
         }
+    }
+
+    private static function setParams($ch, $params) {
+        if (array_key_exists('header', $params)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $params['header']);
+        }
+        curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
     }
 
     private static function exec($ch) {
