@@ -13,8 +13,14 @@ class Http {
         if (function_exists('curl_init')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array_key_exists('header', $params) ? $params['header'] : false);
-            curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
+            if ($params !== null) {
+                if (array_key_exists('header', $params)) {
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $params['header']);
+                }
+                curl_setopt($ch, CURLOPT_TIMEOUT, array_key_exists('timeout', $params) ? $params['timeout'] : 30);
+            } else {
+                curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            }
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
