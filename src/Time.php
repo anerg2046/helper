@@ -7,9 +7,11 @@
 
 namespace anerg\helper;
 
-class Time {
+class Time
+{
 
-    public static function optimization($time) {
+    public static function optimization($time)
+    {
         $return = '';
         if (!is_numeric($time)) {
             $time = strtotime($time);
@@ -26,7 +28,7 @@ class Time {
             $return = floor($dif / 60) . '分钟前';
         } else if ($dif < 10800) {
             $return = floor($dif / 3600) . '小时前';
-        } else if ($d1 == $d2) {
+        } else if ($dif < 86400 && $d1 == $d2) {
             $return = '今天 ' . $htime;
         } else if ($dif < 86400) {
             $return = '昨天 ' . $htime;
