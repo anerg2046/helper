@@ -3,6 +3,22 @@
 > 更新完善中
 > 以下类库都在`\\anerg\\helper`命名空间下
 
+## Snowflake
+> twitter的分布式全局唯一ID生成器PHP实现
+
+```
+//两个方法均可携带2个参数，第一个是机器编号，如果为0，则生成的id会忽略机器标识段
+//第二个是数组，可用键值epoch，maxMachineBit，maxRandomBit
+//具体请查询代码
+
+// 获取一个10进制的唯一ID
+Snowflake::nextId(1)
+
+// 获取一个36进制的唯一ID
+Snowflake::nextHash(1)
+
+```
+
 ## Http
 > CURL相关操作
 
