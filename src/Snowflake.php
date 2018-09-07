@@ -40,7 +40,7 @@ abstract class Snowflake
         //机器标识范围判断
         $maxMachineId = ~(-1 << $maxMachineBit);
         if ($machineId > $maxMachineId || $machineId < 0) {
-            throw new \Exception("MachineId can't be greater than " . $maxMachineId . " or less than 0");
+            throw new \Exception("MachineId can't be less than " . $maxMachineId . " or greater than 0");
         }
         //毫秒时间戳
         $time = \floor(\microtime(true) * 1000);
