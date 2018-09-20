@@ -10,31 +10,27 @@ namespace anerg\helper;
 class Time
 {
 
-    public static function optimization($time)
+    public static function pretty($time)
     {
         $return = '';
         if (!is_numeric($time)) {
             $time = strtotime($time);
         }
-        $d1    = date('d', $time);
-        $d2    = date('d', NOW_TIME);
-        $y1    = date('Y', $time);
-        $y2    = date('Y', NOW_TIME);
         $htime = date('H:i', $time);
-        $dif   = abs(NOW_TIME - $time);
+        $dif   = abs(time() - $time);
         if ($dif < 10) {
             $return = '刚刚';
         } else if ($dif < 3600) {
             $return = floor($dif / 60) . '分钟前';
         } else if ($dif < 10800) {
             $return = floor($dif / 3600) . '小时前';
-        } else if ($dif < 86400 && $d1 == $d2) {
+        } else if (date('Y-m-d', $time) == date('Y-m-d')) {
             $return = '今天 ' . $htime;
-        } else if ($dif < 86400) {
+        } else if (date('d', $time) == date('d', strtotime('-1 day'))) {
             $return = '昨天 ' . $htime;
-        } else if ($dif < 172800) {
+        } else if (date('d', $time) == date('d', strtotime('-2 day'))) {
             $return = '前天 ' . $htime;
-        } else if ($y1 == $y2) {
+        } else if (date('Y', $time) == date('Y')) {
             $return = date('m-d H:i', $time);
         } else {
             $return = date('Y-m-d H:i', $time);
