@@ -73,6 +73,6 @@ Encrypt::decrypt($data, $key = '')
 
 ```
 // 输出优化后的时间显示格式
-Time::optimization($time)
+Time::pretty($time)
 
 ```
