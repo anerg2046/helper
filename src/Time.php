@@ -26,9 +26,9 @@ class Time
             $return = floor($dif / 3600) . '小时前';
         } else if (date('Y-m-d', $time) == date('Y-m-d')) {
             $return = '今天 ' . $htime;
-        } else if (date('d', $time) == date('d', strtotime('-1 day'))) {
+        } else if (date('Y-m-d', $time) == date('Y-m-d', strtotime('-1 day'))) {
             $return = '昨天 ' . $htime;
-        } else if (date('d', $time) == date('d', strtotime('-2 day'))) {
+        } else if (date('Y-m-d', $time) == date('Y-m-d', strtotime('-2 day'))) {
             $return = '前天 ' . $htime;
         } else if (date('Y', $time) == date('Y')) {
             $return = date('m-d H:i', $time);
